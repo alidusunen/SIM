@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ object.tag_number }}</h1>
+<p>{{ object.descriptipm }}</p>
+<p>{{ object.price }}</p>
+
+<!--<form action="." method="POST"> {% csrf_token %}-->
+<!--    {{ form.as_p }}-->
+<!--    <input type="submit" value='Save' />-->
+<!--</form>-->
+
+<form method="POST", action=".">
+    {% csrf_token %}
+
+    <select id="custodian" name="custodian" searchable="Current Custodian {{ object.custodian.name }}">
+      <option value="" disabled selected>Current Custodian {{ object.custodian.name }}</option>
+        {% for instance in custodian %}
+      <option value="{{ instance.id }}">{{instance.name}}</option>
+        {% endfor %}
+    </select>
+<!--    <label>{{instance.name}}</label>-->
+<!--    <input type="radio", name="custodian", value="{{ instance.id }}">-->
+    <input type="submit" value='Save' />
+</form>
+
+{% endblock %}

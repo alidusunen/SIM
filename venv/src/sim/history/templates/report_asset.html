@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> Report for {{ast_name.asset_id.tag_number}} {{ast_name.asset_id.description}}</h1>
+
+    <div>
+        <table class="ui celled table">
+          <thead>
+            <tr>
+              <th>Asset Name</th>
+              <th>Date of Transaction</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for instance in object_list %}
+            <tr>
+              <td class="selectable"><a href="">{{ instance.custodian_id.name }}</a></td>
+              <td class="selectable"><a href="">{{ instance.history_date }}</a></td>
+
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+{% endblock %}

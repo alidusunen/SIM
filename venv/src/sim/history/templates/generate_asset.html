@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form  method="POST", action=".">
+    {% csrf_token %}
+    <h3>Generate Asset Report</h3>
+    <select  name="asset">
+      <option value="" disabled selected>Choose Asset</option>
+        {% for instance in asset_list %}
+      <option value="{{ instance.id }}">{{instance.tag_number}}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" class="btn btn-secondary" value='Generate Report' />
+</form>
+
+    <p></p>
+<!--    to make a space here-->
+
+<!--    <h3>Generate Custodian Report</h3>-->
+<!--    <select name="custodian" >-->
+<!--      <option value="" disabled selected>Choose Custodian</option>-->
+<!--        {% for instance in custodian_list %}-->
+<!--      <option value="{{ instance.id }}">{{instance.name}}</option>-->
+<!--        {% endfor %}-->
+<!--    </select>-->
+<!--    <input type="submit" value='Generate Report' />-->
+
+
+
+{% endblock %}

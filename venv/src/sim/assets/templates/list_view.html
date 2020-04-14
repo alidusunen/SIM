@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="main list-view" id="wrapper">
+    <div id="contain">
+      <div>
+        <table class="ui celled table">
+          <thead>
+            <tr>
+              <th>Tag Number</th>
+              <th>Item Description</th>
+              <th>Price</th>
+              <th>User</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for instance in object_list %}
+            <tr>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.tag_number }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.description }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.price }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.custodian.name }}</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+
+    </div>
+</div>
+
+{% endblock %}
