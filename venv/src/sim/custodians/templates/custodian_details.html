@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="details">
+   <h4>Name: {{ object.name }}</h4>
+    <p></p>
+    <h4>Position: {{ object.position }}</h4>
+    <p></p>
+    <h4>Base: {{ object.base }}</h4>
+    <p></p>
+</div>
+<a href="{% url 'custodians:custodian-update' object.id %}" type="button" class="btn btn-primary">Update</a>
+<a href="{% url 'reports:report-custodian' object.id %}" type="button" class="btn btn-warning">Generate Custodian Report</a>
+<button type="button"  data-toggle="modal" data-target="#deleteModel" class="btn btn-danger" >Delete</button>
+
+
+
+<!-- Modal for Delete Validation -->
+<div class="modal fade" id="deleteModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">WARNING !!</h4>
+      </div>
+      <div class="modal-body">
+          Are you sure you want to delete this item?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="{% url 'custodians:custodian-delete' object.id %}" type="submit" class="btn btn-danger">Yes!</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
+

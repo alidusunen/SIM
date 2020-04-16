@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<a href="create/" class="btn btn-warning"> Create Custodian </a>
+<h1> List of Custodians</h1>
+<p>Click on the "Name" to see details</p>
+    <div class="narrow-table">
+        <table class="ui celled table">
+          <thead>
+            <tr>
+              <th>Base</th>
+              <th>Custodian Name</th>
+              <th>Position</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for instance in object_list %}
+            <tr>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.base }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.name }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.position }}</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% load static %}
+{% block scripts %}
+    <script src='{% static "js/table.js" %}'></script>
+{% endblock %}

@@ -5,13 +5,18 @@
 <form method="POST", action=".">
     {% csrf_token %}
     <h3>Generate Custodian Report</h3>
-    <select class="custom-select custom-select-lg mb-3" name="custodian" >
-      <option value="" disabled selected>Choose Custodian</option>
-        {% for instance in custodian_list %}
-      <option value="{{ instance.id }}">{{instance.name}}</option>
-        {% endfor %}
-    </select>
+    <p>Select Custodian</p>
+    <div class="cust-select">
+        <select  class="form-control selectpicker" data-live-search="true" name="custodian" searchable="Choose Custodian" >
+            {% for instance in custodian_list %}
+          <option value="{{ instance.id }}">{{instance.name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <p></p>
     <input type="submit" class="btn btn-secondary" value='Generate Report' />
 </form>
 
 {% endblock %}
+{% load static %}

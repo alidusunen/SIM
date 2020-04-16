@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="cust-select">
+    <form method="POST" action=".">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Name - Last Name</label>
+            <input name="name" class="form-control form-control-sm" type="text" placeholder="Enter Full Name Here">
+        </div>
+        <div class="form-group">
+            <label>Position</label>
+            <input name="position" class="form-control form-control-sm" type="text" placeholder="Enter Position Here">
+        </div>
+        <div class="form-group">
+            <label>Base</label>
+            <input name="base" class="form-control form-control-sm" type="text" placeholder="ex: ERB">
+            <small class="form-text text-muted">Use three digit BASE code as given in the example</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>
+
+{% endblock %}

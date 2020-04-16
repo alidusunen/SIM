@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="cust-select">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Name - Last Name</label>
+            <input name="name" class="form-control form-control-sm" type="text" placeholder="Enter Full Name Here" value="{{ object.name }}">
+        </div>
+        <div class="form-group">
+            <label>Position</label>
+            <input name="position" class="form-control form-control-sm" type="text" placeholder="Enter Position Here" value="{{ object.position }}">
+        </div>
+        <div class="form-group">
+            <label>Base</label>
+            <input name="base" class="form-control form-control-sm" type="text"  value="{{ object.base }}">
+            <small class="form-text text-muted">Use three digit BASE code as given in the example</small>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Update">
+        <a href="{% url 'custodians:custodian-detail' object.id %}" type="submit" class="btn btn-warning">Cancel</a>
+        <button type="button"  data-toggle="modal" data-target="#deleteModel" class="btn btn-danger" >Delete</button>
+    </form>
+</div>
+
+<!-- Modal for Delete Validation -->
+<div class="modal fade" id="deleteModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">WARNING !!</h4>
+      </div>
+      <div class="modal-body">
+          Are you sure you want to delete this item?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="{% url 'custodians:custodian-delete' object.id %}" type="submit" class="btn btn-danger">Yes!</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

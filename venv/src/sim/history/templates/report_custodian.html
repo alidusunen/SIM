@@ -4,7 +4,7 @@
 
 <h1> User Report for {{cust_name.custodian_id.name}}</h1>
 
-    <div>
+    <div class="narrow-table">
         <table class="ui celled table">
           <thead>
             <tr>
@@ -25,4 +25,8 @@
           </tbody>
         </table>
     </div>
+{% endblock %}
+{% load static %}
+{% block scripts %}
+    <script src='{% static "js/table.js" %}'></script>
 {% endblock %}

@@ -1,7 +1,13 @@
+.main{
+    margin-left: 220px;
+}
 h1 {
     color:red;
 }
 
+
+
+/* MENU BAR CSS */
 .ui.fixed.menu{
     width: 200px;
 }
@@ -9,15 +15,20 @@ h1 {
     height: 40px;
     font-size: 15px;
 }
-.main{
-    margin-left: 220px;
-}
-.list-view{
 
-    width: 1200px;
-    margin-right: auto;
+/* FORM ELEMENTS CSS */
 
+
+.cust-select{
+    width: 400px;
+    margin-right: 20px;
 }
+
+
+
+
+/* LIST VIEW CSS */
+
 #wrapper {
     width: 1200px;
     overflow-x: auto;
@@ -25,6 +36,18 @@ h1 {
 #contain{
     width:1200px;
     margin-right:20px;
+}
+
+.list-view{
+    width: 1200px;
+    margin-right: auto;
+}
+.ui.table thead{
+    text-align: center;
+}
+.narrow-table{
+    width: 800px;
+
 }
 
 

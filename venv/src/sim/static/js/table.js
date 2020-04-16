@@ -3,6 +3,9 @@ for (var i=0; i<tables.length;i++){
  resizableGrid(tables[i]);
 }
 
+//var table = document.getElementById('tableId');
+//resizableGrid(table);
+
 function resizableGrid(table) {
  var row = table.getElementsByTagName('tr')[0],
  cols = row ? row.children : undefined;
@@ -34,13 +37,15 @@ function resizableGrid(table) {
     nxtColWidth = nxtCol.offsetWidth - padding;
   });
 
-  div.addEventListener('mouseover', function (e) {
-   e.target.style.borderRight = '2px solid #0000ff';
-  })
+// style change code on mouseover
 
-  div.addEventListener('mouseout', function (e) {
-   e.target.style.borderRight = '';
-  })
+//  div.addEventListener('mouseover', function (e) {
+//   e.target.style.borderRight = '1.5px solid #717171';
+//  })
+
+//  div.addEventListener('mouseout', function (e) {
+//   e.target.style.borderRight = '';
+//  })
 
   document.addEventListener('mousemove', function (e) {
    if (curCol) {
@@ -91,7 +96,3 @@ function resizableGrid(table) {
  }
 };
 
-// Material Select Initialization
-$(document).ready(function() {
-$('.mdb-select').materialSelect();
-});
