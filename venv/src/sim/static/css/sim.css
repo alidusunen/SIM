@@ -1,5 +1,14 @@
+.main1{
+    overflow: auto;
+    display: table;
+
+}
+
 .main{
     margin-left: 220px;
+    margin-top: 53px;
+    display: inline-block;
+
 }
 h1 {
     color:red;
@@ -30,16 +39,16 @@ h1 {
 /* LIST VIEW CSS */
 
 #wrapper {
-    width: 1200px;
+    width: 1280px;
     overflow-x: auto;
 }
 #contain{
-    width:1200px;
+    width: 1000px;
     margin-right:20px;
 }
 
 .list-view{
-    width: 1200px;
+    width:1000px;
     margin-right: auto;
 }
 .ui.table thead{
@@ -55,4 +64,29 @@ h1 {
 
 .reports{
     width: 400px;
+}
+
+/* LIST VIEW CUSTOMIZER */
+
+.dt-buttons {
+  float: right;
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+.buttons-colvis {
+    margin-right: 5px;
+}
+.dataTables_length {
+    float: left;
+}
+.dataTables_filter{
+    float: right;
+}
+
+th{
+    font-size:13px;
+}
+
+td {
+    font-size: 12px;
 }

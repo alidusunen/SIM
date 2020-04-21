@@ -1,26 +1,163 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        <div class="col-lg-3">-->
+<!--            <h4>Show Hide Columns</h4>-->
+<!--            <p> Select Sections to Hide</p>-->
+<!--            <div>-->
+<!--                <input id="sect1" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">Usage Information</label>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <input id="sect2" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">Procurement Information</label>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <input id="sect3" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">Asset Assign View</label>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-lg-3">-->
+<!--            <h4>Select Columns to Hide</h4>-->
+<!--            <p>Asset Information</p>-->
+<!--            <div>-->
+<!--                <input id="col1" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">Brand</label>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <input id="col2" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">Model</label>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <input id="col3" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">Serial</label>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <input id="col5" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">Category</label>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <input id="col6" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">Sub-Category</label>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-lg-3">-->
+<!--            <p>User&Location Information</p>-->
+<!--            <div>-->
+<!--                <input id="col7" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">Custodian</label>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <input id="col8" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">Location</label>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <input id="col9" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">Physical Location</label>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <input id="col10" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">Condition</label>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <input id="col11" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">Accessories</label>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-lg-3">-->
+<!--            <p>Procurement Information</p>-->
+<!--            <div>-->
+<!--                <input id="col12" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">PSR Reference</label>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <input id="col13" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">Invoice Date</label>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <input id="col14" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">Price</label>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <input id="col15" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">Donor</label>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <input id="col16" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">Budget Code</label>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <input id="col17" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">Supplier's Name</label>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <input id="col18" type="checkbox" class="form-check-input">-->
+<!--                <label class="form-check-label asset-label">Comments</label>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
+<a href="{% url 'assets:asset-create' %} " class="btn btn-warning"> Create Asset </a>
+<button type="button"  data-toggle="modal" data-target="#columnHide" class="btn btn-danger" >Hide Columns</button>
+<h1> List of Assets</h1>
 <div class="list-view" id="wrapper">
     <div id="contain">
       <div>
-        <table class="ui celled table" id="mainTable">
+        <table class="ui celled table" id="mainTable" >
           <thead>
             <tr>
               <th>Tag Number</th>
+              <th>Brand</th>
+              <th>Model</th>
+              <th>Serial Number</th>
               <th>Item Description</th>
+              <th>Category</th>
+              <th>Sub-Category</th>
+              <th>Custodian</th>
+              <th>Location</th>
+              <th>Physical Location</th>
+              <th>Condition</th>
+              <th>Accessories</th>
+              <th>Purchase File Ref.</th>
+              <th>Invoice Date</th>
               <th>Price</th>
-              <th>User</th>
+              <th>Donor</th>
+              <th>Budget Code</th>
+              <th>Supplier's Name</th>
+              <th>Comments</th>
             </tr>
+<!--            <tr>-->
+<!--                <th><input class="form-control form-control-sm" type="text" id="subSearch" placeholder="Filter" onkeyup="subSearchFunction()"></th>-->
+<!--                <th><input class="form-control form-control-sm" type="text" id="subSearch1" placeholder="Filter" onkeyup="subSearchFunction1()"></th>-->
+<!--                <th><input class="form-control form-control-sm" type="text" id="subSearch2" placeholder="Filter" onkeyup="subSearchFunction2()"></th>-->
+<!--                <th><input class="form-control form-control-sm" type="text" id="subSearch3" placeholder="Filter" onkeyup="subSearchFunction3()"></th>-->
+<!--            </tr>-->
           </thead>
           <tbody>
             {% for instance in object_list %}
             <tr>
               <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.tag_number }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.brand }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.model }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.serial }}</a></td>
               <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.description }}</a></td>
-              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.price }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.sub_category.category.name}}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.sub_category.name}}</a></td>
               <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.custodian.name }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.location }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.physical_location }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.condition }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.accessories }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.purchaseReference }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.purchaseDate }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.price }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.donor }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.budgetCode }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.supplierName }}</a></td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.comments }}</a></td>
             </tr>
             {% endfor %}
           </tbody>
@@ -30,20 +167,206 @@
     </div>
 </div>
 
+<!-- Modal for Hide Colums Validation -->
+<div class="modal modal-xl"  id="columnHide" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Show Hide Sections / Columns</h4>
+      </div>
+      <div class="modal-body">
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="col-lg-6">
+                      <h4>Select Sections to Hide</h4>
+                      <div>
+                          <input id="sect1" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">Usage Information</label>
+                      </div>
+                      <div>
+                          <input id="sect2" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">Procurement Information</label>
+                      </div>
+                      <div>
+                          <input id="sect3" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">Asset Assign View</label>
+                      </div>
+                  </div>
+                  <div class="col-lg-6">
+                      <h4>Select Columns to Hide</h4>
+                      <p>Asset Information</p>
+                      <div>
+                          <input id="col1" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">Brand</label>
+                      </div>
+                      <div>
+                          <input id="col2" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">Model</label>
+                      </div>
+                      <div>
+                          <input id="col3" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">Serial</label>
+                      </div>
+                      <div>
+                          <input id="col5" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">Category</label>
+                      </div>
+                      <div>
+                          <input id="col6" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">Sub-Category</label>
+                      </div>
+                  </div>
+                  <div class="col-lg-6">
+                      <p>User&Location Information</p>
+                      <div>
+                          <input id="col7" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">Custodian</label>
+                      </div>
+                      <div>
+                          <input id="col8" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">Location</label>
+                      </div>
+                      <div>
+                          <input id="col9" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">Physical Location</label>
+                      </div>
+                      <div>
+                          <input id="col10" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">Condition</label>
+                      </div>
+                      <div>
+                          <input id="col11" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">Accessories</label>
+                      </div>
+                  </div>
+                  <div class="col-lg-6">
+                      <p>Procurement Information</p>
+                      <div>
+                          <input id="col12" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">PSR Reference</label>
+                      </div>
+                      <div>
+                          <input id="col13" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">Invoice Date</label>
+                      </div>
+                      <div>
+                          <input id="col14" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">Price</label>
+                      </div>
+                      <div>
+                          <input id="col15" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">Donor</label>
+                      </div>
+                      <div>
+                          <input id="col16" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">Budget Code</label>
+                      </div>
+                      <div>
+                          <input id="col17" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">Supplier's Name</label>
+                      </div>
+                      <div>
+                          <input id="col18" type="checkbox" class="form-check-input">
+                          <label class="form-check-label asset-label">Comments</label>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
 
 {% load static %}
 {% block scripts %}
 
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>
+<!--DataTables JS ve CSS Libraries-->
+
+<!--    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>-->
+
+<!--    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>-->
+<!--    <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>-->
+<!--    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.bootstrap.js"></script>-->
+<!--    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.js"></script>-->
+
+
+<!--    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>-->
+<!--    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>-->
+<!--    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>-->
+
+
+
+
+
+
+<!--    <link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet"/>-->
+<!--    <link href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css" rel="stylesheet"/>-->
+
+<!--    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css">-->
+<!--    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">-->
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.bootstrap4.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/colreorder/1.5.2/css/colReorder.bootstrap4.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.css"/>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.bootstrap4.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.colVis.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/colreorder/1.5.2/js/dataTables.colReorder.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js"></script>
+
+
+
+
+
+
+
+<!--    Customization JS for table search-->
     <script src='{% static "js/tablesearch.js" %}'></script>
-
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css">
-
     <script src='{% static "js/table.js" %}'></script>
 
 
+
 {% endblock %}
+
+<!--CHECKBOX CODE-->
+<!--<div class="btn-group">-->
+<!--  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--    Action-->
+<!--  </button>-->
+<!--   <div class="dropdown-menu">-->
+<!--                      <div class="dropdown-item">-->
+<!--                        <input id="tester1" type="checkbox" class="form-check-input">-->
+<!--                        <label class="form-check-label" >Tag Number</label>-->
+<!--                      </div>-->
+<!--                      <div class="dropdown-item">-->
+<!--                          <input id="tester2" type="checkbox" class="form-check-input">-->
+<!--                      <label class="form-check-label" >Brand</label>-->
+<!--                      </div>-->
+<!--                      <div class="dropdown-item">-->
+<!--                          <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+<!--                      <label class="form-check-label" >Model</label>-->
+<!--                      </div>-->
+<!--                      <div class="dropdown-item">-->
+<!--                        <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+<!--                        <label class="form-check-label" >Serial</label>-->
+<!--                      </div>-->
+<!--              </div>-->
+
+
+<!--</div>-->

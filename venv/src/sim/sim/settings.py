@@ -37,11 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'import_export', #excel import app
 
     # own apps
     'custodians',
     'assets',
     'history',
+    'categories',
+    'allocations'
 ]
 
 MIDDLEWARE = [

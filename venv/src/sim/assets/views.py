@@ -5,9 +5,9 @@ from django.views.generic import UpdateView
 from .models import Asset
 from history.models import History
 from custodians.models import Custodian
+from categories.models import SubCategory, Category
 
 from .forms import AssetForm, AssignForm
-
 
 def list_view(request):
 
@@ -27,19 +27,72 @@ def detail_view(request,asset_id):
     }
     return render(request, "asset_details.html", context)
 
-# Create View with Django Forms
 def create_view(request):
-    form = AssetForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        
-       #Resets the form to blank
-        form = AssetForm()
+    if request.method == "GET":
+        queryset = SubCategory.objects.all()
+        context ={
+            "object": queryset
+        }
+        return render(request, "asset_create.html", context)
+    if request.method == "POST":
+        #Asset info
+        c_tag = request.POST.get('tag_number')
+        c_brand = request.POST.get('brand')
+        c_model = request.POST.get('model')
+        c_serial = request.POST.get('serial')
+        c_description = request.POST.get('description')
+        data = request.POST.get('sub_cat')
+        c_sub_cat = SubCategory.objects.get(id=data)
+        #User info
+        c_location = request.POST.get('location')
+        c_physical_location = request.POST.get('physical_location')
+        c_condition = request.POST.get('condition')
+        c_accessories = request.POST.get('accessories')
+        #Purchase Info
+        c_purchaseReferece = request.POST.get('purchaseReference')
+        c_purchaseDate = request.POST.get('purchaseDate')
+        c_price = request.POST.get('price')
+        c_donor = request.POST.get('donor')
+        c_budgetCode = request.POST.get('budgetCode')
+        c_supplierName = request.POST.get('supplierName')
+        c_comments = request.POST.get('comments')
 
-    context = {
-       'form': form
-    }
-    return render(request, "asset_create.html", context)
+        # Create Code
+        new = Asset.objects.create(tag_number=c_tag,
+                                   brand = c_brand,
+                                   model = c_model,
+                                   serial = c_serial,
+                                   sub_category = c_sub_cat,
+                                   description = c_description,
+                                   price = c_price,
+                                   location = c_location,
+                                   physical_location = c_physical_location,
+                                   condition = c_condition,
+                                   accessories = c_accessories,
+                                   donor = c_donor,
+                                   budgetCode = c_budgetCode,
+                                   purchaseReference = c_purchaseReferece,
+                                   purchaseDate = c_purchaseDate,
+                                   supplierName = c_supplierName,
+                                   comments = c_comments)
+        return redirect("/assets/list_view/", {})
+
+
+
+
+# Create View with Django Forms
+# def create_view(request):
+#     form = AssetForm(request.POST or None)
+#     if form.is_valid():
+#         form.save()
+#
+#        #Resets the form to blank
+#         form = AssetForm()
+#
+#     context = {
+#        'form': form
+#     }
+#     return render(request, "asset_create.html", context)
 
 def assign_view(request, asset_id):
 
