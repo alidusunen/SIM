@@ -7,4 +7,6 @@
   <a class="item" href="/assets/list_view">Assets</a>
   <a class="item" href="/custodians/">Custodians</a>
   <a class="item" href="/reports/">Reports</a>
+  <p class="item">Hello {{ request.user }}</p>
+  <a class="item" href="{% url 'logout' %}">Logout</a>
 </div>
