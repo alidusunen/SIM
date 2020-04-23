@@ -1,12 +1,26 @@
-<div class="ui left fixed vertical menu">
-  <div class="item">
-    <img class="ui mini image" src="">
+<!--<div class="ui menu fixed-top">-->
+<!--  <div class="right menu">-->
+<!--    <div class="header item">-->
+<!--      Our Company-->
+<!--    </div>-->
+<!--    <a class="item">-->
+<!--      About Us-->
+<!--    </a>-->
+<!--    <a class="item">-->
+<!--      Jobs-->
+<!--    </a>-->
+<!--    <a class="item">-->
+<!--      Locations-->
+<!--    </a>-->
+<!--  </div>-->
+<!--</div>-->
+<nav class="navbar fixed-top navbar-light bg-light nav-design ">
+  <div class="shift-right">
+    <a class="navbar-brand" id="toggler" href="#">Menu<i class="list icon"></i></a>
+    <div class="align-right">
+      <a class="navbar-brand" href="#">Hello, {{ request.user }} <i class="user icon"></i></a>
+      <a class="navbar-brand" href="{% url 'logout' %}">Logout <i class="ban icon"></i></a>
+    </div>
   </div>
-  <h4 class="item" style="font-weight: bold;">Smart INV Manager </h4>
-  <a class="item" href="/home">Home</a>
-  <a class="item" href="/assets/list_view">Assets</a>
-  <a class="item" href="/custodians/">Custodians</a>
-  <a class="item" href="/reports/">Reports</a>
-  <p class="item">Hello {{ request.user }}</p>
-  <a class="item" href="{% url 'logout' %}">Logout</a>
-</div>
+
+</nav>

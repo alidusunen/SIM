@@ -5,20 +5,44 @@
 }
 
 .main{
-    margin-left: 220px;
-    margin-top: 53px;
+    margin-left: 75px;
+    margin-top: 50px;
     display: inline-block;
-
 }
+
 h1 {
     color:red;
+}
+
+.nav-design {
+    background: white;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    border-style: none;
+}
+.nav-design a{
+    color: black;
+}
+.nav-design i{
+    margin-left: 5px;
+}
+.shift-right{
+    margin-left: 30px;
+    margin-top: 10px;
+}
+.align-right {
+    margin-left: 870px;
 }
 
 
 
 /* MENU BAR CSS */
+.ui.menu {
+    margin-bottom: 0px;
+    box-shadow: 0px 0px 0px 0px #ccc;
+}
 .ui.fixed.menu{
-    width: 200px;
+
 }
 .item{
     height: 40px;
