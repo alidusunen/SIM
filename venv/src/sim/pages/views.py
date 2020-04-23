@@ -5,7 +5,10 @@ from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
 
+from .decorators import allowed_users
+
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['logco', 'logofficer', 'logassistant'])
 def home_view(request, *args, **kwargs):
     return render(request, "home.html", {})
 

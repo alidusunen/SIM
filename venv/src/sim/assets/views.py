@@ -1,14 +1,18 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.views.generic import UpdateView
+from django.contrib.auth.decorators import login_required
 
 from .models import Asset
 from history.models import History
 from custodians.models import Custodian
 from categories.models import SubCategory, Category
 
-from .forms import AssetForm, AssignForm
+# from .forms import AssetForm, AssignForm
+from pages.decorators import allowed_users
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['logco', 'logmanager', 'logofficer', 'logassistant'])
 def list_view(request):
 
     queryset = Asset.objects.all()
@@ -18,6 +22,8 @@ def list_view(request):
     }
     return render(request, "list_view.html", context)
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['logco', 'logmanager', 'logofficer', 'logassistant'])
 def detail_view(request,asset_id):
     #Show method if exists:
     obj = get_object_or_404(Asset, id=asset_id)
@@ -27,6 +33,8 @@ def detail_view(request,asset_id):
     }
     return render(request, "asset_details.html", context)
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['logco', 'logmanager', 'logofficer'])
 def create_view(request):
     if request.method == "GET":
         queryset = SubCategory.objects.all()
@@ -94,6 +102,8 @@ def create_view(request):
 #     }
 #     return render(request, "asset_create.html", context)
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['logco', 'logmanager', 'logofficer', 'logassistant'])
 def assign_view(request, asset_id):
 
     # gets the values of the URL

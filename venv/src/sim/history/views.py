@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 from .models import History
 from assets.models import Asset
@@ -8,9 +9,11 @@ from custodians.models import Custodian
 
 
 # Generates Asset reports based on seleceted dropdown
+@login_required(login_url='login')
 def reports_main(request):
         return render(request, "reports_main.html", {})
 
+@login_required(login_url='login')
 def generate_asset(request):
     if request.method == "GET":
         query_asset = Asset.objects.all()
@@ -27,6 +30,7 @@ def generate_asset(request):
         return HttpResponseRedirect(reverse('reports:report-asset', args=[a_id.pk] ) )
 
 # Generates Custodian reports based on seleceted dropdown
+@login_required(login_url='login')
 def generate_custodian(request):
     if request.method == "GET":
         query_custodian = Custodian.objects.all()
@@ -57,9 +61,7 @@ def generate_custodian(request):
 #         print(request.POST)
 #         return render(request, "home.html", {})
 
-
-
-
+@login_required(login_url='login')
 def report_custodian(request, custodian_id):
     queryset = History.objects.filter(custodian_id=custodian_id)
     #Get the first item in the queryset for page title purposes
@@ -70,7 +72,7 @@ def report_custodian(request, custodian_id):
     }
     return render(request, "report_custodian.html", context)
 
-
+@login_required(login_url='login')
 def report_asset(request, asset_id):
     queryset = History.objects.filter(asset_id=asset_id)
     ast_name = queryset.first()
