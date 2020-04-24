@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="cust-select">
+    <form method="POST" action=".">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Document Number</label>
+            <input name="documentNumber" class="form-control form-control-sm" type="text" placeholder="Enter document number">
+        </div>
+        <div class="form-group">
+            <label>Document Date</label>
+                <div class="input-group date" data-date-format="yyyy-mm-dd">
+                    <input name="date" type="text" class="form-control" placeholder="yyyy.mm.dd">
+                    <div class="input-group-addon" >
+                        <span class="glyphicon glyphicon-th"></span>
+                    </div>
+                </div>
+            <p></p>
+        <div class="form-group">
+            <label>Previous Donor</label>
+            <input name="previousDonor" class="form-control form-control-sm" type="text" placeholder="Enter Previous Donor">
+        </div>
+        <div class="form-group">
+            <label>Previous Budget Code</label>
+            <input name="previousBudget" class="form-control form-control-sm" type="text" placeholder="Enter Previous Budget">
+        </div>
+        <div class="form-group">
+            <label>New Donor</label>
+            <input name="newDonor" class="form-control form-control-sm" type="text" placeholder="Enter New Donor">
+        </div>
+        <div class="form-group">
+            <label>New Budget Code</label>
+            <input name="newBudget" class="form-control form-control-sm" type="text" placeholder="Enter New Budget Code">
+        </div>
+        <div class="form-group">
+            <label>Comments</label>
+            <input name="comments" class="form-control form-control-sm" type="text" placeholder=" ">
+        </div>
+        <div class="form-group cust-select">
+            <label>Assets to be Transferred</label>
+            <select multiple class="form-control selectpicker" name="assets"  data-live-search="true" searchable="Select Sub-Category">
+            {% for instance in objects %}
+                 <option value="{{ instance.id }}">{{instance.tag_number}} {{instance.description}} {{instance.donor}} {{instance.budgetCode}}</option>
+            {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>
+
+{% endblock %}
+
+{% load static %}
+{% block scripts %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+    <script src='{% static "js/datepicker.js" %}'></script>
+
+{% endblock %}

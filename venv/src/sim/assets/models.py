@@ -1,8 +1,9 @@
 from django.db import models
-from custodians.models import Custodian
-from categories.models import SubCategory
 from django.urls import reverse
 from datetime import date
+
+from custodians.models import Custodian
+from categories.models import SubCategory
 
 class Asset(models.Model):
     #Asset Details
@@ -26,8 +27,11 @@ class Asset(models.Model):
     budgetCode = models.CharField(max_length=25, default="")
     purchaseReference = models.CharField(max_length=45, default="")
     purchaseDate = models.DateField(auto_now=False, auto_now_add=False, default=date.today)
-    supplierName = models.CharField(max_length=80)
-    comments = models.CharField(max_length=140)
+    supplierName = models.CharField(max_length=80, default="2")
+
+    #Other
+
+    comments = models.CharField(max_length=140, default="")
 
 
     def get_absolute_url(self):

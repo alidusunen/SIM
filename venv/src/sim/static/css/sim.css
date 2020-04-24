@@ -34,12 +34,18 @@ h1 {
     margin-left: 870px;
 }
 
+/* MODAL */
+
+.modal-backdrop.in {
+/* prevents modal from dimming */
+    z-index: auto;
+}
 
 
 /* MENU BAR CSS */
 .ui.menu {
     margin-bottom: 0px;
-    box-shadow: 0px 0px 0px 0px #ccc;
+
 }
 .ui.fixed.menu{
 

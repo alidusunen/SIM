@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'assets',
     'history',
     'categories',
-    'allocations'
+    'allocations',
+    'disposals'
 ]
 
 MIDDLEWARE = [

@@ -5,6 +5,8 @@ from import_export.admin import ImportExportModelAdmin, ExportMixin
 
 from .models import Custodian, History, Asset
 from categories.models import Category, SubCategory
+from allocations.models import Allocation
+from disposals.models import Disposal
 # Register your models here.
 
 # CUSTODIAN
@@ -60,5 +62,5 @@ class VievAdmin(ImportExportModelAdmin):
 
 
 admin.site.register(History)
-
-
+admin.site.register(Disposal)
+admin.site.register(Allocation)
