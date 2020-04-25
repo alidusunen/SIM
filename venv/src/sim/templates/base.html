@@ -31,17 +31,20 @@
 </head>
 <body>
 
-    <div class="ui left fixed vertical menu visible sidebar push menu ">
-        <div class="item">
-            <img class="ui mini image" src="">
+    <div class="ui left fixed vertical inverted visible menu thin sidebar push">
+        <div class="menu-header">
+            <h4 class="item" style="font-weight: bold; font-size: 24px; text-align:center ">SIM</h4>
         </div>
-        <h4 class="item" style="font-weight: bold;">Smart INV Manager </h4>
+
+        <div class="menu-header">
+            <h4 class="item" style="font-weight: bold; text-align:center">Smart INV Manager </h4>
+        </div>
         <a class="item" href="/home">Home</a>
         <a class="item" href="/assets/list_view">Assets</a>
         <a class="item" href="/custodians/">Custodians</a>
         <a class="item" href="/reports/">Reports</a>
-        <p class="item">Hello {{ request.user }}</p>
-        <a class="item" href="{% url 'logout' %}">Logout</a>
+        <a class="item" href="/allocations/">Allocations</a>
+        <a class="item" href="/disposals/">Disposals</a>
     </div>
 
 

@@ -54,3 +54,28 @@ def create_view(request):
         "objects": queryset
     }
     return render(request, "alloc_create.html", context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['logco', 'logmanager', 'logofficer', 'logassistant'])
+def list_view(request):
+
+    queryset = Allocation.objects.all()
+
+    context = {
+        "object_list": queryset
+    }
+    return render(request, "list_view.html", context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['logco', 'logmanager', 'logofficer', 'logassistant'])
+def detail_view(request,id):
+    #Show method if exists:
+    obj = get_object_or_404(Allocation, id=id)
+    queryset = obj.assets.all()
+    print(queryset)
+
+    context = {
+        "object": obj,
+        "assets": queryset
+    }
+    return render(request, "alloc_details.html", context)

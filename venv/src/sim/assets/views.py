@@ -85,6 +85,51 @@ def create_view(request):
                                    comments = c_comments)
         return redirect("/assets/list_view/", {})
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['logco', 'logmanager', 'logofficer'])
+def update_view(request, asset_id):
+
+    if request.method == 'POST':
+        obj = get_object_or_404(Asset, id=asset_id)
+        # Asset info
+        obj.tag = request.POST.get('tag_number')
+        obj.brand = request.POST.get('brand')
+        obj.model = request.POST.get('model')
+        obj.serial = request.POST.get('serial')
+        obj.description = request.POST.get('description')
+        data = request.POST.get('sub_cat')
+        obj.sub_category = SubCategory.objects.get(id=data)
+        # User info
+        obj.location = request.POST.get('location')
+        obj.physical_location = request.POST.get('physical_location')
+        obj.condition = request.POST.get('condition')
+        obj.accessories = request.POST.get('accessories')
+        # Purchase Info
+        obj.purchaseReferece = request.POST.get('purchaseReference')
+        obj.purchaseDate = request.POST.get('purchaseDate')
+        obj.price = request.POST.get('price')
+        obj.donor = request.POST.get('donor')
+        obj.budgetCode = request.POST.get('budgetCode')
+        obj.supplierName = request.POST.get('supplierName')
+        obj.comments = request.POST.get('comments')
+        data = request.POST.get('custodian')
+        # gets "custodian_id" from post data
+        c_id = Custodian.objects.get(id=data)
+        obj.save()
+
+        ret = History.objects.create(asset_id=obj, custodian_id=c_id)
+
+        return redirect("/assets/list_view/", {})
+
+    asset = get_object_or_404(Asset, id=asset_id)
+    obj2 = Custodian.objects.all()
+    obj3 = SubCategory.objects.all()
+    context = {
+        "object": asset,
+        "custodian": obj2,
+        "subcategory": obj3
+    }
+    return render(request, "asset_update.html", context)
 
 
 
@@ -129,7 +174,6 @@ def assign_view(request, asset_id):
         a_id.save()
 
         ret = History.objects.create(asset_id=a_id, custodian_id=c_id) #creates history of the assignment
-        print(request.POST)
         #Trying to redirect to listview here but its not the best way to do it.
         queryset = Asset.objects.all()
         context = {

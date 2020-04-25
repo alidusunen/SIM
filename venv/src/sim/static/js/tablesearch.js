@@ -4,7 +4,7 @@ $(document).ready(function() {
     $('#mainTable thead tr').clone(true).appendTo( '#mainTable thead' );
     $('#mainTable thead tr:eq(1) th').each( function (i) {
         var title = $(this).text();
-        $(this).html( '<input type="text" class="form-control form-control-sm" placeholder="Filter '+title+' " />' );
+        $(this).html( '<input type="text" class="form-control form-control-sm table-search" placeholder="" />' );
 
         $( 'input', this ).on( 'keyup change', function () {
             if ( table.column(i).search() !== this.value ) {
@@ -25,19 +25,7 @@ $(document).ready(function() {
         'dom': 'BRflrtip',
         colReorder: true,
 
-            columnDefs: [
-            {
-                targets: 1,
-                className: 'noVis'
-            }
-        ],
         buttons: [
-            {
-                extend: 'colvis',
-                text: 'Show Hide Columns',
-                columns: ':not(.noVis)'
-
-            },
             {
                 extend: 'excel',
                 text: 'Export View to Excel'
