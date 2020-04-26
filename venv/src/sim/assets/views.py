@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.views.generic import UpdateView
 from django.contrib.auth.decorators import login_required
+from datetime import date
 
 from .models import Asset
 from history.models import History
@@ -16,7 +17,6 @@ from pages.decorators import allowed_users
 def list_view(request):
 
     queryset = reversed(Asset.objects.all())
-
     context = {
         "object_list": queryset
     }

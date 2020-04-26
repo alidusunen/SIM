@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from datetime import date
+from decimal import Decimal
 
 from custodians.models import Custodian
 from categories.models import SubCategory
@@ -36,5 +37,23 @@ class Asset(models.Model):
 
     def get_absolute_url(self):
         return reverse("assets:asset-detail", kwargs={"asset_id":self.id})
+
+    def depreciation(self):
+        d1 = self.purchaseDate
+        d2 = date.today()
+        # Calculate the number of months
+        months = (d2.year - d1.year)*12 +(d2.month-d1.month)
+        #Calculate the amount of total depreciation
+        reduction = self.price*Decimal(months/self.sub_category.depreciation_length)
+
+        result = round(self.price - reduction, 2)
+
+        if result > 0:
+            return result
+
+        return 0
+
+
+
 
 # Create your models here.
