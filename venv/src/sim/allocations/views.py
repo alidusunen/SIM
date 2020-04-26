@@ -47,7 +47,7 @@ def create_view(request):
 
 
 
-        return redirect("/assets/list_view/", {})
+        return redirect("/allocations/", {})
 
     queryset = Asset.objects.all()
     context = {
@@ -64,7 +64,7 @@ def list_view(request):
     context = {
         "object_list": queryset
     }
-    return render(request, "list_view.html", context)
+    return render(request, "alloc_list.html", context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['logco', 'logmanager', 'logofficer', 'logassistant'])
@@ -72,10 +72,21 @@ def detail_view(request,id):
     #Show method if exists:
     obj = get_object_or_404(Allocation, id=id)
     queryset = obj.assets.all()
-    print(queryset)
 
     context = {
         "object": obj,
         "assets": queryset
     }
+    return render(request, "alloc_details.html", context)
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['logco'])
+def update_view(request):
+    return render(request, "alloc_details.html", context)
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['logco'])
+def delete_view(request):
     return render(request, "alloc_details.html", context)

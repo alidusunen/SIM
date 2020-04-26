@@ -19,6 +19,9 @@ h1 {
     color: #08415C;
 }
 
+h2 {
+    color: #08415C;
+}
 
 /* NAVBAR DESIGN */
 .nav-design {
@@ -78,11 +81,14 @@ h1 {
 
 /* FORM ELEMENTS CSS */
 
+.button-holder{
+    margin-bottom: 10px;
+}
 
 .cust-select{
     width: 350px;
     margin-right: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 15py px;
 }
 .create-view{
     width: 400px;
@@ -90,7 +96,7 @@ h1 {
     margin-bottom: 20px;
     padding-bottom: 10px;
     padding-top: 10px;
-    border: 0.5px solid grey;
+    border: 0.5px solid #E6E6E6;
     border-radius: 7px;
 }
 

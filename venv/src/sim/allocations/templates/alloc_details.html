@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="button-holder">
+    <a href="{% url 'allocations:allocation-update' object.id %}" type="button" class="btn btn-primary">Update</a>
+    <button type="button"  data-toggle="modal" data-target="#deleteModel" class="btn btn-danger" >Delete</button>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 create-view">
+            <div class="form-group">
+                <label>Document Number</label>
+                <p>{{ object.documentNumber}}</p>
+            </div>
+            <div class="form-group">
+                <label>Document Date</label>
+                <p>{{ object.date}}</p>
+            </div>
+
+            <div class="form-group">
+                <label>Previous Donor</label>
+                <p>{{ object.previousDonor}}</p>
+            </div>
+            <div class="form-group">
+                <label>Previous Budget Code</label>
+                <p>{{ object.previousBudget}}</p>
+            </div>
+        </div>
+        <div class="col-sm-6 create-view">
+            <div class="form-group">
+                <label>New Donor</label>
+                <p>{{ object.newDonor}}</p>
+            </div>
+            <div class="form-group">
+                <label>New Budget Code</label>
+                <p>{{ object.newBudget}}</p>
+            </div>
+            <div class="form-group">
+                <label>Comments</label>
+                <p>{{ object.newBudget}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="allocation-table">
+        <h4>List of Allocated Assets</h4>
+        <div class="narrow-table">
+            <table class="ui selectable celled striped table" id="mainTable">
+                <thead>
+                <tr>
+                    <th>Tag Number</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for instance in assets %}
+                <tr>
+                    <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.tag_number }}</a></td>
+                    <td>{{ instance.brand }}</td>
+                    <td>{{ instance.model }}</td>
+                    <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.description }}</a></td>
+                    <td>{{ instance.price }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>
+
+<!-- Modal for Delete Validation -->
+<div class="modal fade" id="deleteModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">WARNING !!</h4>
+      </div>
+      <div class="modal-body">
+          Are you sure you want to delete this item?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="{% url 'allocations:allocation-delete' object.id %}" type="submit" class="btn btn-danger">Yes!</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

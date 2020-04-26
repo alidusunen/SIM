@@ -16,4 +16,6 @@ class Allocation(models.Model):
     comments = models.CharField(max_length = 140)
     assets = models.ManyToManyField(Asset)
 
+    def get_absolute_url(self):
+        return reverse("allocations:allocation-detail", kwargs={"id":self.id})
 # Create your models here.
