@@ -227,15 +227,16 @@ def assign_view(request, asset_id):
 
 
 
-# #Delete view
-# def delete_view(request,product_id):
-#     #Show method if exists:
-#     obj = Product.objects.get(id=product_id)
-#     #delete method:
-#     obj.delete()
-#     context = {
-#     }
-#     return render(request, "delete_view.html", context)
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['logco', 'logmanager', 'logofficer', 'logassistant'])
+def delete_view(request,product_id):
+    #Show method if exists:
+    obj = Asset.objects.get(id=product_id)
+    #delete method:
+    obj.delete()
+    context = {
+    }
+    return render(request, "delete_view.html", context)
 
 
 

@@ -1,13 +1,125 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{{ object.tag_number }}</h1>
-<p>{{ object.descriptipm }}</p>
-<p>{{ object.price }}</p>
-<p>{{ object.custodian.name }}</p>
-<form action="." method="POST"> {% csrf_token %}
-    <h1>Are you sure you want to delete this item?</h1>
-    <input type="submit" value='Yes' /> <a href=""> Cancel </a>
-</form>
+<div>
+    <a href="{% url 'assets:asset-update' object.id %}" type="button" class="btn btn-primary">Update</a>
+    <a href="{% url 'assets:asset-assign' object.id %}" type="button" class="btn btn-primary button-assign">Assign</a>
+    <a href="{% url 'reports:report-asset' object.id %}" type="button" class="btn btn-warning">Generate Asset Report</a>
+    <button type="button"  data-toggle="modal" data-target="#deleteModel" class="btn btn-danger">Delete</button>
+    <h2>Asset Details for {{ object.tag_number }}</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 create-view">
+                    <div class="form-group ">
+                        <h4> Asset Information </h4>
+                        <label>Tag Number</label>
+                        <p>{{ object.tag_number }}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Brand</label>
+                        <p>{{ object.brand}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Model</label>
+                        <p>{{ object.model}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Serial Number</label>
+                        <p>{{ object.serial}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <p>{{ object.description}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <p>{{ object.sub_category.category.name}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Sub-Category</label>
+                        <p>{{ object.sub_category.name}}</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 create-view">
+                    <h4> User & Location Information </h4>
+                    <div class="form-group">
+                        <label>User</label>
+                        <p>{{ object.custodian.name}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <p>{{ object.location}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Physical Location</label>
+                        <p>{{ object.physical_location}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Condition</label>
+                        <p>{{ object.condition}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Accessories</label>
+                        <p>{{ object.accessories}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 create-view">
+                    <h4> Purchase Information </h4>
+                    <div class="form-group">
+                        <label>Purchase File Reference</label>
+                        <p>{{ object.purchaseReference}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Invoice Date</label>
+                        <p>{{ object.purchaseDate}}</p>
+                        <p></p>
+                        <div class="form-group">
+                            <label>Price</label>
+                            <p>{{ object.price}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Supplier's Name</label>
+                            <p>{{ object.supplierName}}</p>
+                        </div>
+                </div>
+            </div>
+                <div class="col-sm-6 create-view">
+                    <div class="form-group">
+                            <h4> Donor Information </h4>
+                            <label>Donor</label>
+                            <p>{{ object.donor}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Budget Code</label>
+                            <p>{{ object.budgetCode}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Comments</label>
+                            <p>{{ object.comments}}</p>
+                        </div>
+                </div>
+        </div>
+</div>
+
+<!-- Modal for Delete Validation -->
+<div class="modal fade" id="deleteModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">WARNING !!</h4>
+      </div>
+      <div class="modal-body">
+          Are you sure you want to delete this item?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="{% url 'assets:asset-delete' object.id %}" type="submit" class="btn btn-danger">Yes!</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 {% endblock %}

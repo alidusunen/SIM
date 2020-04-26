@@ -9,8 +9,8 @@
         <table class="ui selectable celled striped table" id="mainTable">
           <thead>
             <tr>
-              <th>Document Number</th>
               <th>Date</th>
+              <th>Document Number</th>
               <th>Previous Donor</th>
               <th>Previous Budget Code</th>
               <th>New Donor</th>
@@ -21,8 +21,8 @@
           <tbody>
             {% for instance in object_list %}
             <tr>
+              <td>{{ instance.date }}</td>
               <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.documentNumber }}</a></td>
-              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.date }}</a></td>
               <td>{{ instance.previousDonor }}</a></td>
               <td>{{ instance.previousBudget }}</a></td>
               <td>{{ instance.newDonor }}</a></td>

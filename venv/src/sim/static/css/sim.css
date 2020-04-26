@@ -48,7 +48,7 @@ h2 {
     margin-top: 10px;
 }
 .align-right {
-    margin-left: 870px;
+    margin-left: 950px;
 }
 
 /* MODAL */
@@ -83,6 +83,10 @@ h2 {
 
 .button-holder{
     margin-bottom: 10px;
+}
+
+.button-assign{
+    background-color: #08415C;
 }
 
 .cust-select{
