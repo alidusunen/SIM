@@ -63,7 +63,7 @@ def generate_custodian(request):
 
 @login_required(login_url='login')
 def report_custodian(request, custodian_id):
-    queryset = History.objects.filter(custodian_id=custodian_id)
+    queryset = reversed(History.objects.filter(custodian_id=custodian_id))
     #Get the first item in the queryset for page title purposes
     cust_name = queryset.first()
     context = {
@@ -74,7 +74,7 @@ def report_custodian(request, custodian_id):
 
 @login_required(login_url='login')
 def report_asset(request, asset_id):
-    queryset = History.objects.filter(asset_id=asset_id)
+    queryset = reversed(History.objects.filter(asset_id=asset_id))
     ast_name = queryset.first()
     context = {
         "object_list": queryset,

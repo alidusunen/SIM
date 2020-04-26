@@ -59,7 +59,7 @@ def create_view(request):
 @allowed_users(allowed_roles=['logco', 'logmanager', 'logofficer', 'logassistant'])
 def list_view(request):
 
-    queryset = Allocation.objects.all()
+    queryset = reversed(Allocation.objects.all())
 
     context = {
         "object_list": queryset

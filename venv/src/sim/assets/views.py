@@ -15,7 +15,7 @@ from pages.decorators import allowed_users
 @allowed_users(allowed_roles=['logco', 'logmanager', 'logofficer', 'logassistant'])
 def list_view(request):
 
-    queryset = Asset.objects.all()
+    queryset = reversed(Asset.objects.all())
 
     context = {
         "object_list": queryset
