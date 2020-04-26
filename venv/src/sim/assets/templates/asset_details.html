@@ -100,6 +100,26 @@
                             <p>{{ object.comments}}</p>
                         </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 create-view">
+                    <div class="form-group">
+                                <h4>Allocations</h4>
+                                {% for instance in object_list %}
+                                <div class="bordered-div">
+                                    <div>
+                                    <label>Document Number:</label>
+                                        <div>
+                                            <a href="{{ instance.get_absolute_url }}">{{ instance.documentNumber }}</a>
+                                        </div>
+                                    </div>
+                                    <label>Date:</label>
+                                    <p>{{ instance.date }}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                </div>
+            </div>
         </div>
 </div>
 

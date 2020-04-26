@@ -8,6 +8,7 @@ from .models import Asset
 from history.models import History
 from custodians.models import Custodian
 from categories.models import SubCategory, Category
+from allocations.models import Allocation
 
 # from .forms import AssetForm, AssignForm
 from pages.decorators import allowed_users
@@ -27,9 +28,11 @@ def list_view(request):
 def detail_view(request,asset_id):
     #Show method if exists:
     obj = get_object_or_404(Asset, id=asset_id)
+    queryset = reversed(Allocation.objects.filter(assets=asset_id))
 
     context = {
-        "object": obj
+        "object": obj,
+        "object_list": queryset
     }
     return render(request, "asset_details.html", context)
 

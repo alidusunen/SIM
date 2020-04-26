@@ -34,7 +34,7 @@
                     <div class="cust-select">
                         <label>Sub-Category</label>
                         <select id="" name="sub_cat" class="form-control selectpicker" data-live-search="true" searchable="Current Sub-Category {{ object.sub_category.name }}">
-                            <option value="" disabled selected>Current Sub-Category {{ object.sub_category.name }}</option>
+                            <option value="{{ object.sub_category.id }}" selected>Current Sub-Category {{ object.sub_category.name }}</option>
                             {% for instance in subcategory %}
                             <option data-tokens="{{instance.name}}" value="{{ instance.id }}">{{instance.name}}</option>
                             {% endfor %}
@@ -44,14 +44,18 @@
                 </div>
                 <div class="col-sm-6 create-view">
                     <h4> Location & User Information </h4>
-                    <div class="cust-select">
-                        <label>User</label>
-                        <select id="custodian" name="custodian" class="form-control selectpicker" data-live-search="true" searchable="Current Custodian {{ object.custodian.name }}">
-                            <option value="" disabled selected>Current Custodian {{ object.custodian.name }}</option>
-                            {% for instance in custodian %}
-                            <option data-tokens="{{instance.name}}" value="{{ instance.id }}">{{instance.name}}</option>
-                            {% endfor %}
-                        </select>
+                    <div class="container cust-select">
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label>User</label>
+                                    <p>{{ object.custodian.name }}</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a href="{% url 'assets:asset-assign' object.id %}" type="button" class="btn btn-primary button-assign">Assign</a>
+                                </div>
+                            </div>
+
                     </div>
                     <div class="form-group">
                         <label>Location</label>
@@ -88,7 +92,7 @@
                     <div class="form-group">
                         <label>Invoice Date</label>
                         <div class="input-group date" data-date-format="yyyy-mm-dd">
-                            <input name="purchaseDate" type="text" class="form-control" placeholder="dd.mm.yyyy" value="{{object.purchaseDate}}">
+                            <input name="purchaseDate" type="text" class="form-control" data-date-format="mm/dd/yyyy" value="{{object.purchaseDate|date:"Y-m-d"}}">
                             <div class="input-group-addon" >
                                 <span class="glyphicon glyphicon-th"></span>
                             </div>
