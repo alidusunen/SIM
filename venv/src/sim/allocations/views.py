@@ -12,8 +12,7 @@ from pages.decorators import allowed_users
 def create_view(request):
 
     if request.method == "POST":
-        print(request.POST)
-        #Asset info
+        #Allocation info
         c_documentNumber = request.POST.get('documentNumber')
         c_date = request.POST.get('date')
         c_previousDonor = request.POST.get('previousDonor')
@@ -79,14 +78,40 @@ def detail_view(request,id):
     }
     return render(request, "alloc_details.html", context)
 
-
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['logco'])
-def update_view(request):
-    return render(request, "alloc_details.html", context)
+def delete_view(request, id):
+    obj = get_object_or_404(Allocation, id=id)
+    obj.delete()
+    return redirect('allocations:list-view')
+
+# UPDATE function either to be managed through admin panel or by deleting and recreating!!!
+
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['logco'])
+# def update_view(request, id):
+#     if request.method == 'POST':
+#         obj = get_object_or_404(Allocation, id=id)
+#         obj.documentNumber = request.POST.get('documentNumber')
+#         obj.date = request.POST.get('date')
+#         obj.previousDonor = request.POST.get('previousDonor')
+#         obj.previousBudget = request.POST.get('previousBudget')
+#         obj.newDonor = request.POST.get('newDonor')
+#         obj.newBudget = request.POST.get('newBudget')
+#         obj.comments = request.POST.get('comments')
+#         # Returns a query:
+#
+#         obj.assets = request.POST.getlist('assets')
+#
+#         obj.save()
+#
+#         return redirect()
+#
+#     obj = get_object_or_404(Allocation, id=id)
+#     context = {
+#         "object": obj
+#     }
+#     return render(request, "alloc_update.html", context)
 
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['logco'])
-def delete_view(request):
-    return render(request, "alloc_details.html", context)
+

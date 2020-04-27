@@ -115,14 +115,16 @@ def update_view(request, asset_id):
         obj.budgetCode = request.POST.get('budgetCode')
         obj.supplierName = request.POST.get('supplierName')
         obj.comments = request.POST.get('comments')
+
         data = request.POST.get('custodian')
         # gets "custodian_id" from post data
-        c_id = Custodian.objects.get(id=data)
+        obj.custodian = Custodian.objects.get(id=data)
+        # gets "custodian"
+
         obj.save()
 
-        ret = History.objects.create(asset_id=obj, custodian_id=c_id)
 
-        return redirect("/assets/list_view/", {})
+        return redirect('assets:asset-detail', asset_id=asset_id)
 
     asset = get_object_or_404(Asset, id=asset_id)
     obj2 = Custodian.objects.all()
@@ -135,20 +137,6 @@ def update_view(request, asset_id):
     return render(request, "asset_update.html", context)
 
 
-
-# Create View with Django Forms
-# def create_view(request):
-#     form = AssetForm(request.POST or None)
-#     if form.is_valid():
-#         form.save()
-#
-#        #Resets the form to blank
-#         form = AssetForm()
-#
-#     context = {
-#        'form': form
-#     }
-#     return render(request, "asset_create.html", context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['logco', 'logmanager', 'logofficer', 'logassistant'])
@@ -177,55 +165,8 @@ def assign_view(request, asset_id):
         a_id.save()
 
         ret = History.objects.create(asset_id=a_id, custodian_id=c_id) #creates history of the assignment
-        #Trying to redirect to listview here but its not the best way to do it.
-        queryset = Asset.objects.all()
-        context = {
-            "object_list": queryset
-        }
-        return redirect("/assets/list_view/", context)
 
-
-
-# class AssetAssignView(UpdateView):
-#     template_name = 'asset_assign.html'
-#     form_class = AssignForm
-#     queryset = Asset.objects.all()
-#
-#     def get_object(self):
-#         id_ = self.kwargs.get("asset_id")
-#         return get_object_or_404(Asset, id=id_)
-#
-#     def form_valid(self, form):
-#         print(form.cleaned_data)
-#         return super().form_valid(form)
-#
-    # def create_history(self):
-    #     if request.method == "POST":
-    #         asset = self.kwargs.get("asset_id")
-    #         data = request.POST
-    #         ret = History.objects.create(asset_id=asset, custodian_id=data.custodian )
-    #         return render(request, "list_view.html", context)
-
-
-
-
-
-
-
-
-# def assign_view(request, asset_id):
-#     obj = get_object_or_404(Asset, id=asset_id)
-#     form = AssignForm(request.POST, instance=asset_id)
-#     if form.is_valid():
-#         form.save()
-#         # Resets the form to blank
-#         form = AssignForm()
-#
-#     context = {
-#         'form': form,
-#         'object': obj
-#     }
-#     return render(request, "asset_assign.html", context)
+        return redirect('assets:asset-detail', asset_id=asset_id)
 
 
 

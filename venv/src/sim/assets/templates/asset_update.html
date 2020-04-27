@@ -29,7 +29,7 @@
                     </div>
                     <div class="form-group">
                         <label>Description</label>
-                        <input name="description" class="form-control form-control-sm" type="text" placeholder="Enter description here" value="{{object.serial}}">
+                        <input name="description" class="form-control form-control-sm" type="text" placeholder="Enter description here" value="{{object.description}}">
                     </div>
                     <div class="cust-select">
                         <label>Sub-Category</label>
@@ -47,11 +47,16 @@
                     <div class="container cust-select">
 
                             <div class="row">
-                                <div class="col-sm-6">
-                                    <label>User</label>
-                                    <p>{{ object.custodian.name }}</p>
+                                <div class="col-sm-9 user-display">
+
+                                        <label>User</label>
+                                        <select name="custodian" class="form-control selectpicker">
+                                        <option value="{{ object.custodian.id }}" selected> {{ object.custodian.name }}</option>
+                                        </select>
+
+
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-3 user-button">
                                     <a href="{% url 'assets:asset-assign' object.id %}" type="button" class="btn btn-primary button-assign">Assign</a>
                                 </div>
                             </div>

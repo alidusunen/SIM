@@ -99,27 +99,44 @@
                             <label>Comments</label>
                             <p>{{ object.comments}}</p>
                         </div>
+                        <div class="form-group">
+                            <label>Current Value (Depreciated)</label>
+                            <p>{{ object.depreciation}}</p>
+                        </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-12 create-view">
-                    <div class="form-group">
-                                <h4>Allocations</h4>
-                                {% for instance in object_list %}
-                                <div class="bordered-div">
-                                    <div>
-                                    <label>Document Number:</label>
-                                        <div>
-                                            <a href="{{ instance.get_absolute_url }}">{{ instance.documentNumber }}</a>
-                                        </div>
-                                    </div>
-                                    <label>Date:</label>
-                                    <p>{{ instance.date }}</p>
-                                </div>
-                                {% endfor %}
-                            </div>
-                </div>
-            </div>
+
+        </div>
+        <div class="allocation-table">
+            <h4>List of Allocations</h4>
+            <div class="narrow-table">
+                <table class="ui selectable celled striped table" id="mainTable">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Document Number</th>
+                        <th>Previous Donor</th>
+                        <th>Previous Budget Code</th>
+                        <th>New Donor</th>
+                        <th>New Budget Code</th>
+                        <th>Comments</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for instance in object_list %}
+                    <tr>
+                        <td>{{ instance.date }}</td>
+                        <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.documentNumber }}</a></td>
+                        <td>{{ instance.previousDonor }}</td>
+                        <td>{{ instance.previousBudget }}</td>
+                        <td>{{ instance.newDonor}}</td>
+                        <td>{{ instance.newBudget}}</td>
+                        <td>{{ instance.comments}}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+             </div>
         </div>
 </div>
 

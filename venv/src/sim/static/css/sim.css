@@ -112,6 +112,14 @@ h2 {
     margin-bottom: 10px;
 }
 
+.user-display {
+    margin-left: -15px;
+    margin-bottom: 10px;
+}
+.user-button{
+    margin-top: 25px;
+}
+
 /* HISTORY MODEL CSS */
 
 .reports{

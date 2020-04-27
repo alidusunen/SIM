@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -65,7 +65,7 @@ def generate_custodian(request):
 def report_custodian(request, custodian_id):
     queryset = reversed(History.objects.filter(custodian_id=custodian_id))
     #Get the first item in the queryset for page title purposes
-    cust_name = queryset.first()
+    cust_name = get_object_or_404(Custodian, id=custodian_id)
     context = {
         "object_list": queryset,
         "cust_name": cust_name
@@ -75,7 +75,7 @@ def report_custodian(request, custodian_id):
 @login_required(login_url='login')
 def report_asset(request, asset_id):
     queryset = reversed(History.objects.filter(asset_id=asset_id))
-    ast_name = queryset.first()
+    ast_name = get_object_or_404(Asset, id=asset_id)
     context = {
         "object_list": queryset,
         "ast_name": ast_name

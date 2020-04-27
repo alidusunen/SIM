@@ -3,7 +3,6 @@
 {% block content %}
 
 <div class="button-holder">
-    <a href="{% url 'allocations:allocation-update' object.id %}" type="button" class="btn btn-primary">Update</a>
     <button type="button"  data-toggle="modal" data-target="#deleteModel" class="btn btn-danger" >Delete</button>
 </div>
 
@@ -54,6 +53,7 @@
                     <th>Model</th>
                     <th>Description</th>
                     <th>Price</th>
+                    <th>Depreciation</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -64,6 +64,7 @@
                     <td>{{ instance.model }}</td>
                     <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.description }}</a></td>
                     <td>{{ instance.price }}</td>
+                    <td>{{ instance.depreciation }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
