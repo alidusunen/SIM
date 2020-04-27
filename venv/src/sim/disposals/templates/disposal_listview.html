@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<a href="{% url 'disposals:create' %}" class="btn btn-warning"> New Disposal </a>
+<h1> List of Disposals </h1>
+<p>Click on the allocation to see list of allocated assets</p>
+    <div class="narrow-table">
+        <table class="ui selectable celled striped table" id="mainTable">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Document Number</th>
+              <th>Issuing Base</th>
+              <th>Reason for Disposal</th>
+              <th>Comments</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for instance in object_list %}
+            <tr>
+              <td>{{ instance.date }}</td>
+              <td class="selectable"><a href="{{ instance.get_absolute_url }}">{{ instance.documentNumber }}</a></td>
+              <td>{{ instance.base }}</a></td>
+              <td>{{ instance.reason }}</a></td>
+              <td>{{ instance.comments }}</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% load static %}
+{% block scripts %}
+
+<!--    Customization JS for table search-->
+    <script src='{% static "js/tablesearch.js" %}'></script>
+    <script src='{% static "js/table.js" %}'></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static "css/datatables.min.css" %}"/>
+    <script src='{% static "js/datatables.min.js" %}'></script>
+
+
+{% endblock %}
